@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useReducer} from 'react'
+import OnboardingForm from './components/OnboardingForm'
+import {Employee} from './types/employee'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const EmployeeContext = React.createContext<Employee[]>([])
+
+const reducer = (state: Employee[], action: {payload: Employee; type: string}) => {
+  switch (action.type) {
+    case 'addEmployee': {
+      return [action.payload, ...state]
+    }
+    default: {
+      return state
+    }
+  }
 }
 
-export default App;
+const App = () => {
+  const [state, dispatch] = useReducer(reducer, [])
+
+  const handleAddEmployee = (value: any) => {
+    dispatch({type: 'addEmployee', payload: value})
+  }
+
+  return (
+    <EmployeeContext.Provider value={state}>
+      <div className="max-w-[550px] mx-auto py-5">
+        <OnboardingForm onFinish={handleAddEmployee} />
+      </div>
+    </EmployeeContext.Provider>
+  )
+}
+
+export default App

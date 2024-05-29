@@ -1,46 +1,79 @@
-# Getting Started with Create React App
+## Installation Guide
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Prerequisites
 
-## Available Scripts
+- Node.js installed on your machine. You can download and install it from [Node.js official website](https://nodejs.org/en/download).
 
-In the project directory, you can run:
+### Installation Steps
 
-### `npm start`
+1. Clone the repository to your local machine using the following command:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+git clone https://github.com/nukumalik/employee-onboarding-form.git
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+2. Navigate to the project directory:
 
-### `npm test`
+```bash
+cd employee-onboarding-form
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. Install dependencies using npm or yarn:
 
-### `npm run build`
+```bash
+npm install
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. After the installation is complete, you can start the development server:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+6. Open your web browser and visit http://localhost:3000 to view the application.
 
-### `npm run eject`
+## Reasoning behind the approach taken
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The approach taken for this app was guided by the following principles:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Ensuring that all fields on form is appear correctly and render error when the required fields is empty
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Ensuring that when user press submit button it'll showing up the confirmation modal and when user click submit button on the confirmation modal the onboarding form will be reset/empty and the data will be store on the employee context
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Using the ant design component library to reduce the app development time and more focusing on the functionality
 
-## Learn More
+- Dividing the source code into some folders, like components, hooks, services, styles, types, and utils to make it easy to maintain, dividing the purpose, and to make it more clean.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Specific Strategies:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Rendering Tests: Verify that all form fields and buttons are rendered correctly.
+
+- Interaction Tests: Test user interactions such as filling out the form, toggling switches, and submitting the form.
+
+- Conditional Rendering: Ensure that the email input appears when the "Give employee their own login" switch is toggled.
+
+## Assumptions Made
+
+- Form Structure: The form fields and structure will not change frequently, so the test queries are based on the current labels and element hierarchy.
+
+- Mock Data: The provided mock data for organisations, departments, and divisions is representative of the actual data structure returned by the API.
+
+## Total Time Taken
+
+The total time taken to develop and refine the tests, including resolving errors and ensuring robustness, was approximately 4 hours. This time includes:
+
+- Writing codes and refining the test cases: 3 hours
+
+- Debugging and resolving issues: 0.5 hours
+
+- Docummenting the app on Readme file: 0.5 hours
+
+## Solutions Relied on Googling
+
+During the development of these tests, some solutions and approaches were researched using Google. Specifically:
+
+- React Testing Library Queries: Understanding the best practices for using getByLabelText, getByRole, and other queries.
+
+- Mocking Axios: Research on how to effectively mock axios.
+
+- Handling Ant Design Components: Finding tips on testing components from Ant Design, especially for more complex components like Upload, and Form.
